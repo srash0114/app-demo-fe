@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 export default function AddTodoForm() {
   const [title, setTitle] = useState('');
@@ -12,10 +13,13 @@ export default function AddTodoForm() {
     e.preventDefault();
     if (!title.trim()) return;
 
+    const token = Cookies.get('access_token');
+
     try {
       await fetch('http://localhost:3001/todo', {
         method: 'POST',
         headers: {
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ title: title }),

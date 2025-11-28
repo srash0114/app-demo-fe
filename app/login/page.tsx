@@ -3,7 +3,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
 import Link from 'next/link'; // Thêm Link
 import { useAuth } from '../context/AuthContext';
 
