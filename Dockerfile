@@ -1,5 +1,5 @@
 # Sử dụng Node.js bản nhẹ
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Thiết lập thư mục làm việc
 WORKDIR /app
