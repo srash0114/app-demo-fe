@@ -5,13 +5,14 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import Link from 'next/link'; // Thêm Link
+import { useAuth } from '../context/AuthContext';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
-
+  const { login } = useAuth();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -28,8 +29,7 @@ export default function LoginPage() {
       }
 
       const data = await res.json();
-      Cookies.set('token', data.access_token, { expires: 1 / 24 });
-
+      login(data.access_token);
       router.push('/');
       router.refresh();
 
